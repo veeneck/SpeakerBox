@@ -125,6 +125,11 @@ SWIFT_CLASS("_TtC10SpeakerBox7SBStage")
 /// \param name The name of the image for the speaker. If the file name is "RyanBubble", just pass is "Ryan" as "Bubble" is appended automatically.
 - (void)addSpeaker:(NSString * __nonnull)name;
 
+/// Remove a speaker from the scene.
+///
+/// \param index The index in the speakers array.
+- (void)removeSpeaker:(NSInteger)index;
+
 /// Call this when you're ready for the letterbox and any set speakers to appear into view.
 - (void)animateIntoView;
 

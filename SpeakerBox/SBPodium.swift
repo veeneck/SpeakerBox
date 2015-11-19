@@ -133,13 +133,25 @@ internal class SBPodium {
     }
     
     /// Shrink the buble until it disappears.
-    internal func animateChatBubbleOut() {
+    /// withMove is used because the letterbox remains if removeSpeaker is called, but not if the scene ends.
+    internal func animateChatBubbleOut(withMove:Bool = true, callback:()->()) {
         let move = SKAction.moveToY(0, duration: 1)
         move.timingMode = SKActionTimingMode.EaseOut
         let scale = SKAction.scaleTo(0, duration: 1)
         scale.timingMode = SKActionTimingMode.EaseOut
         
-        self.chatBubble.runAction(SKAction.group([move,scale]))
+        if(withMove) {
+            self.chatBubble.runAction(SKAction.group([move,scale])) {
+                self.chatBubble.removeFromParent()
+                callback()
+            }
+        }
+        else {
+            self.chatBubble.runAction(scale) {
+                self.chatBubble.removeFromParent()
+                callback()
+            }
+        }
     }
     
 }

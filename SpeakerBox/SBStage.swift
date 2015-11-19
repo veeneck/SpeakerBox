@@ -105,6 +105,20 @@ public class SBStage : SKNode {
         self.addChild(speaker.chatBubble)
     }
     
+    /**
+    Remove a speaker from the scene.
+     
+    - parameter index: The index in the speakers array.
+    */
+    public func removeSpeaker(index:Int) {
+        let speaker = self.speakers[index]
+        speaker.animateChatBubbleOut(false) {
+            speaker.podiumCrop?.removeFromParent()
+            self.speakers.removeAtIndex(index)
+            self.adjustPositionsForSpeakers()
+        }
+    }
+    
     // MARK: Positioning
     
     /// This should be called the first time the stage comes into view. Removing or adding speakers afterwards should call `adjust`.
@@ -130,9 +144,29 @@ public class SBStage : SKNode {
         }
     }
     
+    // TODO: TOMORROW, FIGURE OUT THE LAST OF REMOVE SPEAKER.
+    
     /// Calculate positions when the stage is already in view. For example, removing a podium.
     private func adjustPositionsForSpeakers() {
-        
+        for (index, speaker) in self.speakers.enumerate() {
+            
+            /// Set start to current position and find the end position
+            let coords = self.calculateSpeakerStartAndEndPositions(index)
+            speaker.startPosition = speaker.chatBubble.position
+            speaker.endPosition = coords.endPos
+            
+            /// Remove old podium and create new one based on new dimensions and move it instantly to Y coord.
+            speaker.podiumCrop?.removeFromParent()
+            speaker.addPodiumBase(self.scene!, index: index, totalPodiums: self.speakers.count)
+            speaker.podiumCrop!.position = CGPoint(x:speaker.podiumCrop!.position.x, y:Config.BubbleHeight.rawValue)
+            
+            /// Add the podium base to the scene
+            self.addChild(speaker.podiumCrop!)
+            
+            /// Set sliding window position **after** adding podium base so that relative coordinates works.
+            speaker.setSlidingWindowPosition(speaker.startPosition!)
+        }
+
     }
     
     /**
@@ -247,7 +281,7 @@ public class SBStage : SKNode {
         move.timingMode = SKActionTimingMode.EaseOut
         for (_, podium) in self.speakers.enumerate() {
             podium.podiumCrop?.runAction(move)
-            podium.animateChatBubbleOut()
+            podium.animateChatBubbleOut() {}
         }
     }
     

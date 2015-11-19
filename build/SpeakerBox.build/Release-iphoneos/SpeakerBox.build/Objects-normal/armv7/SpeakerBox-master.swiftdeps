@@ -1,6 +1,6 @@
 version: "Apple Swift version 2.1 (swiftlang-700.1.101.6 clang-700.1.76)"
 options: "8e32f0f1182be42eaa7421874baa7b55"
-build_time: [501285644, 500240000]
+build_time: [501286731, 229175000]
 inputs:
-  "/Users/ryancampbell/Documents/Games/SpeakerBox/SpeakerBox/SBStage.swift": [501285638, 0]
-  "/Users/ryancampbell/Documents/Games/SpeakerBox/SpeakerBox/SBPodium.swift": [501285587, 0]
+  "/Users/ryancampbell/Documents/Games/SpeakerBox/SpeakerBox/SBStage.swift": [501286725, 0]
+  "/Users/ryancampbell/Documents/Games/SpeakerBox/SpeakerBox/SBPodium.swift": [501286073, 0]

@@ -7,32 +7,34 @@ provides-member:
 - ["C10SpeakerBox8SBPodium", ""]
 provides-dynamic-lookup:
 depends-top-level:
-- !private "print"
+- "BooleanLiteralType"
+- !private "/"
+- "SKCropNode"
+- !private "*"
+- !private "+"
+- !private "CGFloat"
+- "SKSpriteNode"
 - !private "&&"
-- "CGPoint"
+- !private "SKShapeNode"
+- !private "NSTimeInterval"
+- "String"
+- !private "print"
+- !private "-="
+- "Bool"
+- !private "Array"
+- !private "StringLiteralType"
 - !private "CGRect"
-- !private "SKColor"
 - !private "SKAction"
 - !private "SBStage"
-- !private "+="
-- !private "SKActionTimingMode"
-- !private "=="
-- !private "/"
-- "String"
-- !private "CGFloat"
-- !private "*"
-- "SKSpriteNode"
-- !private "-"
-- !private "NSTimeInterval"
-- !private "SKShapeNode"
-- "SBPodium"
-- !private "StringLiteralType"
-- !private "-="
-- "SKCropNode"
+- "CGPoint"
 - "SKScene"
-- !private "+"
-- !private "Array"
+- "SBPodium"
 - "Int"
+- !private "SKColor"
+- !private "-"
+- !private "=="
+- !private "SKActionTimingMode"
+- !private "+="
 depends-member:
 - !private ["PSs16AbsoluteValuable", "IntegerLiteralType"]
 - !private ["PSs16AbsoluteValuable", "Stride"]
@@ -67,6 +69,7 @@ depends-member:
 - !private ["PSs9AnyObject", "position"]
 - !private ["PSs9AnyObject", "print"]
 - !private ["PSs9AnyObject", "redColor"]
+- !private ["PSs9AnyObject", "removeFromParent"]
 - !private ["PSs9AnyObject", "runAction"]
 - !private ["PSs9AnyObject", "scaleTo"]
 - !private ["PSs9AnyObject", "sequence"]
@@ -116,6 +119,7 @@ depends-member:
 - !private ["PSs11CVarArgType", "parent"]
 - !private ["PSs11CVarArgType", "position"]
 - !private ["PSs11CVarArgType", "redColor"]
+- !private ["PSs11CVarArgType", "removeFromParent"]
 - !private ["PSs11CVarArgType", "runAction"]
 - !private ["PSs11CVarArgType", "scaleTo"]
 - !private ["PSs11CVarArgType", "sequence"]
@@ -155,6 +159,7 @@ depends-member:
 - !private ["PSs23CustomStringConvertible", "parent"]
 - !private ["PSs23CustomStringConvertible", "position"]
 - !private ["PSs23CustomStringConvertible", "redColor"]
+- !private ["PSs23CustomStringConvertible", "removeFromParent"]
 - !private ["PSs23CustomStringConvertible", "runAction"]
 - !private ["PSs23CustomStringConvertible", "scaleTo"]
 - !private ["PSs23CustomStringConvertible", "sequence"]
@@ -190,6 +195,7 @@ depends-member:
 - !private ["PSs9Equatable", "position"]
 - !private ["PSs9Equatable", "rawValue"]
 - !private ["PSs9Equatable", "redColor"]
+- !private ["PSs9Equatable", "removeFromParent"]
 - !private ["PSs9Equatable", "runAction"]
 - !private ["PSs9Equatable", "scaleTo"]
 - !private ["PSs9Equatable", "sequence"]
@@ -236,6 +242,7 @@ depends-member:
 - !private ["PSs8Hashable", "position"]
 - !private ["PSs8Hashable", "rawValue"]
 - !private ["PSs8Hashable", "redColor"]
+- !private ["PSs8Hashable", "removeFromParent"]
 - !private ["PSs8Hashable", "runAction"]
 - !private ["PSs8Hashable", "scaleTo"]
 - !private ["PSs8Hashable", "sequence"]
@@ -291,6 +298,7 @@ depends-member:
 - !private ["PSo8NSCoding", "parent"]
 - !private ["PSo8NSCoding", "position"]
 - !private ["PSo8NSCoding", "redColor"]
+- !private ["PSo8NSCoding", "removeFromParent"]
 - !private ["PSo8NSCoding", "runAction"]
 - !private ["PSo8NSCoding", "scaleTo"]
 - !private ["PSo8NSCoding", "sequence"]
@@ -314,6 +322,7 @@ depends-member:
 - !private ["PSo9NSCopying", "parent"]
 - !private ["PSo9NSCopying", "position"]
 - !private ["PSo9NSCopying", "redColor"]
+- !private ["PSo9NSCopying", "removeFromParent"]
 - !private ["PSo9NSCopying", "runAction"]
 - !private ["PSo9NSCopying", "scaleTo"]
 - !private ["PSo9NSCopying", "sequence"]
@@ -336,6 +345,7 @@ depends-member:
 - !private ["CSo8NSObject", "parent"]
 - !private ["CSo8NSObject", "position"]
 - !private ["CSo8NSObject", "redColor"]
+- !private ["CSo8NSObject", "removeFromParent"]
 - !private ["CSo8NSObject", "runAction"]
 - !private ["CSo8NSObject", "scaleTo"]
 - !private ["CSo8NSObject", "sequence"]
@@ -359,6 +369,7 @@ depends-member:
 - !private ["PSo16NSObjectProtocol", "parent"]
 - !private ["PSo16NSObjectProtocol", "position"]
 - !private ["PSo16NSObjectProtocol", "redColor"]
+- !private ["PSo16NSObjectProtocol", "removeFromParent"]
 - !private ["PSo16NSObjectProtocol", "runAction"]
 - !private ["PSo16NSObjectProtocol", "scaleTo"]
 - !private ["PSo16NSObjectProtocol", "sequence"]
@@ -378,6 +389,7 @@ depends-member:
 - !private ["PSs16RawRepresentable", "EaseOut"]
 - !private ["PSs16RawRepresentable", "PodiumHeight"]
 - !private ["PSs16RawRepresentable", "rawValue"]
+- ["C10SpeakerBox8SBPodium", "Bool"]
 - !private ["C10SpeakerBox8SBPodium", "CGFloat"]
 - ["C10SpeakerBox8SBPodium", "CGPoint"]
 - !private ["C10SpeakerBox8SBPodium", "CGRect"]
@@ -431,6 +443,7 @@ depends-member:
 - !private ["CSo6SKNode", "maskNode"]
 - !private ["CSo6SKNode", "parent"]
 - !private ["CSo6SKNode", "position"]
+- !private ["CSo6SKNode", "removeFromParent"]
 - !private ["CSo6SKNode", "runAction"]
 - !private ["CSo6SKNode", "setScale"]
 - !private ["CSo6SKNode", "size"]
@@ -444,6 +457,7 @@ depends-member:
 - !private ["CSo12SKSpriteNode", "init"]
 - !private ["CSo12SKSpriteNode", "parent"]
 - !private ["CSo12SKSpriteNode", "position"]
+- !private ["CSo12SKSpriteNode", "removeFromParent"]
 - !private ["CSo12SKSpriteNode", "runAction"]
 - !private ["CSo12SKSpriteNode", "setScale"]
 - !private ["CSo12SKSpriteNode", "zPosition"]
@@ -477,6 +491,7 @@ depends-member:
 - !private ["CSo11UIResponder", "maskNode"]
 - !private ["CSo11UIResponder", "parent"]
 - !private ["CSo11UIResponder", "position"]
+- !private ["CSo11UIResponder", "removeFromParent"]
 - !private ["CSo11UIResponder", "runAction"]
 - !private ["CSo11UIResponder", "setScale"]
 - !private ["CSo11UIResponder", "size"]
@@ -572,6 +587,7 @@ depends-member:
 - !private ["PSs12_Reflectable", "lineWidth"]
 - !private ["PSs12_Reflectable", "parent"]
 - !private ["PSs12_Reflectable", "position"]
+- !private ["PSs12_Reflectable", "removeFromParent"]
 - !private ["PSs12_Reflectable", "runAction"]
 - !private ["PSs12_Reflectable", "setScale"]
 - !private ["PSs12_Reflectable", "textureFromNode"]
@@ -702,4 +718,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/SpriteKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/GLKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/simd.swiftmodule"
-interface-hash: "6aecd32d5f3fe1414cbe18adbaa457d4"
+interface-hash: "5c357b47af66a6651b63592ae90e7f2d"
