@@ -10,6 +10,17 @@ import SpriteKit
 
 /**
     Create a stage that shows in letterbox format, and allows up to 3 speakers. Handles construction, animation, speaker bubbles, and tear down.
+ 
+         let speakerBox = SBStage()
+         uiNode.addChild(speakerBox)
+         speakerBox.setup()
+         
+         speakerBox.addSpeaker("Stou")
+         speakerBox.addSpeaker("Princess")
+         
+         speakerBox.animateIntoView()
+ 
+    - warning: All positioning calculations assume that the parent node (`uiNode` in the example above) is positioned in the center of the scene. Also, it is assumed that scene.size is set.
 */
 public class SBStage : SKNode {
     
@@ -21,7 +32,8 @@ public class SBStage : SKNode {
         case PodiumHeight = 40
     }
     
-    var speakers = [SBPodium]()
+    /// List of speakers (podiums) currently on stage.
+    private var speakers = [SBPodium]()
     
     // MARK: Initializing a SBStage
     
@@ -42,6 +54,7 @@ public class SBStage : SKNode {
     - precondition: The SBStage must be added to the scene before calling this function.
     */
     public func setup() {
+        self.position = CGPoint(x: -1 * self.scene!.size.width / 2, y: -1 * self.scene!.size.height / 2)
         self.buildBottomLetterBox()
         self.buildTopLetterBox()
     }
@@ -79,7 +92,7 @@ public class SBStage : SKNode {
         self.addChild(shapeNode)
     }
     
-    // MARK: Adding speakers
+    // MARK: Managing Speakers
     
     /**
     Add a podium for each new speaker.
@@ -161,7 +174,7 @@ public class SBStage : SKNode {
         
     }
     
-    // MARK: Bringing the stage into view
+    // MARK: Displaying the Stage
     
     /// Call this when you're ready for the letterbox and any set speakers to appear into view.
     public func animateIntoView() {
@@ -196,6 +209,45 @@ public class SBStage : SKNode {
         for (index, podium) in self.speakers.enumerate() {
             podium.podiumCrop?.runAction(move)
             podium.animateChatBubbleIn(index)
+        }
+    }
+    
+    /**
+    Hide the letterbox and speakers.
+    
+    - note: It is up to you to manually remove SBStage from the scene after this.
+    */
+    public func animateOutOfView() {
+        self.animateBottomLetterBoxOutOfView()
+        self.animateTopLetterBoxOutOfView()
+        self.animatePodiumsOutOfView()
+    }
+    
+    /// Move bottom box down.
+    private func animateBottomLetterBoxOutOfView() {
+        if let letterBox = self.childNodeWithName("BottomLetterBox") {
+            let move = SKAction.moveToY(Config.BGHeight.rawValue * -1 - 40, duration: 1)
+            move.timingMode = SKActionTimingMode.EaseOut
+            letterBox.runAction(move)
+        }
+    }
+    
+    /// Move top box up.
+    private func animateTopLetterBoxOutOfView() {
+        if let letterBox = self.childNodeWithName("TopLetterBox") {
+            let move = SKAction.moveToY(self.scene!.size.height, duration: 1)
+            move.timingMode = SKActionTimingMode.EaseOut
+            letterBox.runAction(move)
+        }
+    }
+    
+    /// Loop through each podium and pan it up. Also, grow chat bubbles and move sliding windows.
+    private func animatePodiumsOutOfView() {
+        let move = SKAction.moveToY(-1 * Config.BubbleHeight.rawValue, duration: 1)
+        move.timingMode = SKActionTimingMode.EaseOut
+        for (_, podium) in self.speakers.enumerate() {
+            podium.podiumCrop?.runAction(move)
+            podium.animateChatBubbleOut()
         }
     }
     

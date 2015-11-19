@@ -1,0 +1,33 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/ryancampbell/Documents/Games/SpeakerBox/build/Release-iphoneos/SpeakerBox.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "SpeakerBox-Swift.h",
+          'external-contents': "/Users/ryancampbell/Documents/Games/SpeakerBox/build/Release-iphoneos/SpeakerBox.framework/Headers/SpeakerBox-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "SpeakerBox.h",
+          'external-contents': "/Users/ryancampbell/Documents/Games/SpeakerBox/SpeakerBox/SpeakerBox.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/ryancampbell/Documents/Games/SpeakerBox/build/Release-iphoneos/SpeakerBox.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/ryancampbell/Documents/Games/SpeakerBox/build/SpeakerBox.build/Release-iphoneos/SpeakerBox.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

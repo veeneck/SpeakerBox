@@ -1,0 +1,10 @@
+framework module SpeakerBox {
+  umbrella header "SpeakerBox.h"
+
+  export *
+  module * { export * }
+}
+
+module SpeakerBox.Swift {
+    header "SpeakerBox-Swift.h"
+}

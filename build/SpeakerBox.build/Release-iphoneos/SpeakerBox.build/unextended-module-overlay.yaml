@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': '/Users/ryancampbell/Documents/Games/SpeakerBox/build/Release-iphoneos/SpeakerBox.framework/Modules'
+    'contents': [{
+      'type': 'file',
+      'name': 'module.modulemap',
+      'external-contents': '/Users/ryancampbell/Documents/Games/SpeakerBox/build/SpeakerBox.build/Release-iphoneos/SpeakerBox.build/unextended-module.modulemap',
+    }]
+  }]
+}

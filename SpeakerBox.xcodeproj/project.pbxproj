@@ -12,6 +12,7 @@
 		E74F52781BFE28800050BA8D /* SpeakerBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F52771BFE28800050BA8D /* SpeakerBoxTests.swift */; };
 		E74F529A1BFE4B8D0050BA8D /* SBPodium.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F52991BFE4B8D0050BA8D /* SBPodium.swift */; };
 		E74F529C1BFE4B990050BA8D /* SBStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F529B1BFE4B990050BA8D /* SBStage.swift */; };
+		E74F529E1BFE71550050BA8D /* config.yml in Resources */ = {isa = PBXBuildFile; fileRef = E74F529D1BFE71550050BA8D /* config.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		E74F52791BFE28800050BA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74F52991BFE4B8D0050BA8D /* SBPodium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBPodium.swift; sourceTree = "<group>"; };
 		E74F529B1BFE4B990050BA8D /* SBStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBStage.swift; sourceTree = "<group>"; };
+		E74F529D1BFE71550050BA8D /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config.yml; path = SpeakerBox/config.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				E74F526A1BFE28800050BA8D /* SpeakerBox */,
+				E74F529F1BFE71580050BA8D /* Config */,
 				E74F52761BFE28800050BA8D /* SpeakerBoxTests */,
 				E74F52691BFE28800050BA8D /* Products */,
 			);
@@ -90,6 +93,14 @@
 				E74F52791BFE28800050BA8D /* Info.plist */,
 			);
 			path = SpeakerBoxTests;
+			sourceTree = "<group>";
+		};
+		E74F529F1BFE71580050BA8D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E74F529D1BFE71550050BA8D /* config.yml */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74F529E1BFE71550050BA8D /* config.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
