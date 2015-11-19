@@ -89,14 +89,86 @@ public class SBStage : SKNode {
     public func addSpeaker(name:String) {
         let speaker = SBPodium(bubbleImage: "\(name)Bubble")
         self.speakers.append(speaker)
+        self.addChild(speaker.chatBubble)
+    }
+    
+    // MARK: Positioning
+    
+    /// This should be called the first time the stage comes into view. Removing or adding speakers afterwards should call `adjust`.
+    private func setPositionsForSpeakers() {
+        for (index, speaker) in self.speakers.enumerate() {
+            
+            /// Find the start and end position
+            let coords = self.calculateSpeakerStartAndEndPositions(index)
+            speaker.startPosition = coords.startPos
+            speaker.endPosition = coords.endPos
+            
+            /// Set the node to the start position
+            speaker.chatBubble.position = CGPoint(x: coords.startPos.x, y: Config.SpeakerHeight.rawValue)
+            
+            /// Create the podium that the chat bubble sits on
+            speaker.addPodiumBase(self.scene!, index: index, totalPodiums: self.speakers.count)
+            
+            /// Add the podium base to the scene
+            self.addChild(speaker.podiumCrop!)
+            
+            /// Set sliding window position **after** adding podium base so that relative coordinates works.
+            speaker.setSlidingWindowPosition(speaker.startPosition!)
+        }
+    }
+    
+    /// Calculate positions when the stage is already in view. For example, removing a podium.
+    private func adjustPositionsForSpeakers() {
+        
+    }
+    
+    /**
+    Visually, the speakers should animate in near each other, and then spread out. This function will determine the initial position based on the total number of speakers, and also the end position once they are all evenly spread out.
+    
+    - parameter index: The index of the SBPodium in the self.speakers array.
+    
+    - returns: Two values. The `startPos` and `endPos` to use when bringing the speaker in.
+    */
+    private func calculateSpeakerStartAndEndPositions(index:Int) -> (startPos:CGPoint, endPos:CGPoint) {
+        var startX = self.scene!.size.width / 2
+        
+        switch self.speakers.count {
+        case 2:
+            if(index == 0) {
+                startX -= 100
+            }
+            else {
+                startX += 100
+            }
+            break
+        case 3:
+            if(index == 0) {
+                startX -= 200
+            }
+            else if(index == 1) {
+                startX -= 0
+            }
+            else {
+                startX += 200
+            }
+            break
+        default:
+            break
+        }
+        
+        let endX = (self.scene!.size.width / CGFloat(self.speakers.count + 1)) * CGFloat(index + 1)
+        return (CGPoint(x: startX, y: Config.SpeakerHeight.rawValue), CGPoint(x: endX, y: Config.SpeakerHeight.rawValue))
+        
     }
     
     // MARK: Bringing the stage into view
     
     /// Call this when you're ready for the letterbox and any set speakers to appear into view.
     public func animateIntoView() {
+        self.setPositionsForSpeakers()
         self.animateBottomLetterBoxIntoView()
         self.animateTopLetterBoxIntoView()
+        self.animatePodiumsIntoView()
     }
     
     /// Move bottom box up.
@@ -114,6 +186,16 @@ public class SBStage : SKNode {
             let move = SKAction.moveToY(self.scene!.size.height - (Config.BGHeight.rawValue + Config.PodiumHeight.rawValue), duration: 2)
             move.timingMode = SKActionTimingMode.EaseOut
             letterBox.runAction(move)
+        }
+    }
+    
+    /// Loop through each podium and pan it up. Also, grow chat bubbles and move sliding windows.
+    private func animatePodiumsIntoView() {
+        let move = SKAction.moveToY(Config.BubbleHeight.rawValue, duration: 2)
+        move.timingMode = SKActionTimingMode.EaseOut
+        for (index, podium) in self.speakers.enumerate() {
+            podium.podiumCrop?.runAction(move)
+            podium.animateChatBubbleIn(index)
         }
     }
     
