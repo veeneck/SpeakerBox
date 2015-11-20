@@ -113,9 +113,14 @@ public class SBStage : SKNode {
     public func removeSpeaker(index:Int) {
         let speaker = self.speakers[index]
         speaker.animateChatBubbleOut(false) {
-            speaker.podiumCrop?.removeFromParent()
             self.speakers.removeAtIndex(index)
             self.adjustPositionsForSpeakers()
+            for (_, podium) in self.speakers.enumerate() {
+                podium.slideChatBubble()
+            }
+            self.runAction(SKAction.waitForDuration(0.5)) {
+                speaker.podiumCrop?.removeFromParent()
+            }
         }
     }
     
@@ -143,8 +148,6 @@ public class SBStage : SKNode {
             speaker.setSlidingWindowPosition(speaker.startPosition!)
         }
     }
-    
-    // TODO: TOMORROW, FIGURE OUT THE LAST OF REMOVE SPEAKER.
     
     /// Calculate positions when the stage is already in view. For example, removing a podium.
     private func adjustPositionsForSpeakers() {

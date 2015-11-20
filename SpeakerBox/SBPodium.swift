@@ -120,14 +120,22 @@ internal class SBPodium {
         self.animateSlidingWindow(delay1, delay2: delay2)
     }
     
+    /// Slide chat buble if it has already been brought onto stage.
+    internal func slideChatBubble() {
+        let move = SKAction.moveTo(self.endPosition!, duration: 0.5)
+        move.timingMode = SKActionTimingMode.EaseOut
+        self.chatBubble.runAction(move)
+        
+        /// Move sliding window with it, this time with no delay since it isn't the first time thestage is loaded.
+        self.animateSlidingWindow(SKAction.waitForDuration(0), delay2: SKAction.waitForDuration(0), cropDuration: 0)
+    }
+    
     /// Once chat bubbles have finished first half of animation, slide the window to mirror the chat bubble identically.
-    private func animateSlidingWindow(delay1:SKAction, delay2:SKAction) {
+    private func animateSlidingWindow(delay1:SKAction, delay2:SKAction, cropDuration:Double = 1) {
         var pos = self.chatBubble.parent!.convertPoint(self.endPosition!, toNode: self.podiumCrop!)
         pos.y = 0
-        print(self.endPosition)
-        print(pos)
         let move = SKAction.moveTo(pos, duration: 0.5)
-        let cropdelay = SKAction.waitForDuration(1)
+        let cropdelay = SKAction.waitForDuration(cropDuration)
         move.timingMode = SKActionTimingMode.EaseOut
         self.slidingWindow?.runAction(SKAction.sequence([delay1, cropdelay, delay2, move]))
     }
