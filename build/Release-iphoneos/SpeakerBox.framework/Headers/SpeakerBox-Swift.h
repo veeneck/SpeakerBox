@@ -98,11 +98,12 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 ///
 /// <code> let speakerBox = SBStage()
 ///  uiNode.addChild(speakerBox)
-///  speakerBox.setup()
-///  
+/// 
 ///  speakerBox.addSpeaker("Stou")
 ///  speakerBox.addSpeaker("Princess")
-///  
+/// 
+///  speakerBox.setup()
+/// 
 ///  speakerBox.animateIntoView()
 /// 
 /// </code>\Warning 
@@ -117,7 +118,10 @@ SWIFT_CLASS("_TtC10SpeakerBox7SBStage")
 
 /// Create the intiial components of the stage like letterbox bars.\Precondition 
 ///
-/// The SBStage must be added to the scene before calling this function.
+/// The SBStage must be added to the scene before calling this function.\Note 
+///
+/// This is called after adding speakers because it sets the <code>endPosition
+/// </code> of speakers. Other parts of the code can then access that position and show something near the chatBubble (i.e.: Dialogue).
 - (void)setup;
 
 /// Add a podium for each new speaker.

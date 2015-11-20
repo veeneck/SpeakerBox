@@ -12,12 +12,12 @@ Making it a module since it has a chance of being reused in different games.
     /// Add to scene
     uiNode.addChild(speakerBox)
 
-    /// Setup the stage
-    speakerBox.setup()
-
     /// Add speakers
     speakerBox.addSpeaker("Stou")
     speakerBox.addSpeaker("Princess")
+
+    /// Setup the stage. Specifically call when you've finished adding speakers.
+    speakerBox.setup()
 
     /// Start the show
     speakerBox.animateIntoView()

@@ -13,11 +13,12 @@ import SpriteKit
  
          let speakerBox = SBStage()
          uiNode.addChild(speakerBox)
-         speakerBox.setup()
-         
+ 
          speakerBox.addSpeaker("Stou")
          speakerBox.addSpeaker("Princess")
-         
+ 
+         speakerBox.setup()
+ 
          speakerBox.animateIntoView()
  
     - warning: All positioning calculations assume that the parent node (`uiNode` in the example above) is positioned in the center of the scene. Also, it is assumed that scene.size is set.
@@ -52,11 +53,14 @@ public class SBStage : SKNode {
     Create the intiial components of the stage like letterbox bars.
     
     - precondition: The SBStage must be added to the scene before calling this function.
+    
+    - note: This is called after adding speakers because it sets the `endPosition` of speakers. Other parts of the code can then access that position and show something near the chatBubble (i.e.: Dialogue).
     */
     public func setup() {
         self.position = CGPoint(x: -1 * self.scene!.size.width / 2, y: -1 * self.scene!.size.height / 2)
         self.buildBottomLetterBox()
         self.buildTopLetterBox()
+        self.setPositionsForSpeakers()
     }
     
     /// Add a black bar across the bottom of the stage.
@@ -215,7 +219,6 @@ public class SBStage : SKNode {
     
     /// Call this when you're ready for the letterbox and any set speakers to appear into view.
     public func animateIntoView() {
-        self.setPositionsForSpeakers()
         self.animateBottomLetterBoxIntoView()
         self.animateTopLetterBoxIntoView()
         self.animatePodiumsIntoView()
