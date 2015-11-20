@@ -15,22 +15,22 @@ import SpriteKit
     - The podiumCrop which is a black bar (mask) representing the width of the podium.
     - The slidingWindow which is the pedestal the chatBubble sits in. By being in a crop, we can move it back and forth with the chatBubble.
 */
-internal class SBPodium {
+public class SBPodium {
     
     /// The node representing the image of the speaker.
-    var chatBubble : SKSpriteNode
+    internal var chatBubble : SKSpriteNode
     
     /// The desired end position of the chatBubble
-    var endPosition : CGPoint?
+    public var endPosition : CGPoint?
     
     /// Desired start position of the chat bubble
-    var startPosition : CGPoint?
+    public var startPosition : CGPoint?
     
     /// A crop node placed on top of the bottom letterbox
-    var podiumCrop : SKCropNode?
+    internal var podiumCrop : SKCropNode?
     
     /// The viewable portion o the podiumCrop which contains the base that chatBubble sits in.
-    var slidingWindow : SKSpriteNode?
+    internal var slidingWindow : SKSpriteNode?
     
     // Mark: Initializing a SBPodium
     

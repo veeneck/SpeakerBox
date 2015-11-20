@@ -8,37 +8,37 @@ provides-member:
 - ["C10SpeakerBox7SBStage", ""]
 - ["OC10SpeakerBox7SBStage6Config", ""]
 provides-dynamic-lookup:
-- "animateIntoView"
-- "addSpeaker"
 - "removeSpeaker"
+- "animateIntoView"
 - "setup"
 - "animateOutOfView"
+- "addSpeaker"
 depends-top-level:
+- !private "fatalError"
+- !private "-="
 - "Int"
+- !private "SKActionTimingMode"
+- !private "SKShapeNode"
+- !private "CGRect"
+- "String"
+- !private "BooleanLiteralType"
+- !private "SKSpriteNode"
 - !private "/"
 - !private "*"
-- !private "SKShapeNode"
-- !private "SKSpriteNode"
-- "String"
-- "SKNode"
-- !private "+"
-- !private "BooleanLiteralType"
-- "CGFloat"
-- "NSCoder"
-- "SBPodium"
+- !private "+="
 - "=="
 - !private "~="
-- !private "-="
-- !private "fatalError"
-- !private "CGPoint"
+- "NSCoder"
 - "SBStage"
-- !private "SKAction"
-- !private "+="
-- !private "SKColor"
+- "CGFloat"
+- "SKNode"
 - !private "-"
+- !private "SKAction"
+- !private "SKColor"
+- !private "+"
 - !private "StringLiteralType"
-- !private "CGRect"
-- !private "SKActionTimingMode"
+- !private "CGPoint"
+- "SBPodium"
 depends-member:
 - !private ["PSs16AbsoluteValuable", "IntegerLiteralType"]
 - !private ["PSs16AbsoluteValuable", "Stride"]
@@ -735,6 +735,7 @@ depends-member:
 - !private ["C10SpeakerBox8SBPodium", "animateChatBubbleIn"]
 - !private ["C10SpeakerBox8SBPodium", "animateChatBubbleOut"]
 - !private ["C10SpeakerBox8SBPodium", "chatBubble"]
+- ["C10SpeakerBox8SBPodium", "deinit"]
 - !private ["C10SpeakerBox8SBPodium", "endPosition"]
 - !private ["C10SpeakerBox8SBPodium", "init"]
 - !private ["C10SpeakerBox8SBPodium", "podiumCrop"]
@@ -778,7 +779,7 @@ depends-member:
 - !private ["C10SpeakerBox7SBStage", "scene"]
 - !private ["C10SpeakerBox7SBStage", "setPositionsForSpeakers"]
 - ["C10SpeakerBox7SBStage", "setup"]
-- !private ["C10SpeakerBox7SBStage", "speakers"]
+- ["C10SpeakerBox7SBStage", "speakers"]
 - !private ["CSo8SKAction", "moveToY"]
 - !private ["CSo8SKAction", "timingMode"]
 - !private ["CSo8SKAction", "waitForDuration"]
@@ -1110,7 +1111,7 @@ depends-nominal:
 - !private "VSs5Range"
 - "PSs30RangeReplaceableCollectionType"
 - "PSs16RawRepresentable"
-- !private "C10SpeakerBox8SBPodium"
+- "C10SpeakerBox8SBPodium"
 - "C10SpeakerBox7SBStage"
 - !private "CSo8SKAction"
 - !private "OSC18SKActionTimingMode"
@@ -1185,4 +1186,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/SpriteKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/GLKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/simd.swiftmodule"
-interface-hash: "df858fa437e595e1fab021aea6b3fd5e"
+interface-hash: "799c589a7d7c5ce787f05f93a1e0f66f"

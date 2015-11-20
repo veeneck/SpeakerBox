@@ -32,8 +32,8 @@ public class SBStage : SKNode {
         case PodiumHeight = 40
     }
     
-    /// List of speakers (podiums) currently on stage.
-    private var speakers = [SBPodium]()
+    /// List of speakers (podiums) currently on stage. Exposed publicly so that start and end positions can be read.
+    public var speakers = [SBPodium]()
     
     // MARK: Initializing a SBStage
     
