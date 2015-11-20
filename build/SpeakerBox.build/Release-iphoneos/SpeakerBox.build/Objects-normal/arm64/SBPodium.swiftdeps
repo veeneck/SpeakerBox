@@ -7,34 +7,34 @@ provides-member:
 - ["C10SpeakerBox8SBPodium", ""]
 provides-dynamic-lookup:
 depends-top-level:
-- "BooleanLiteralType"
-- !private "/"
-- "SKCropNode"
-- !private "*"
-- !private "+"
-- !private "CGFloat"
-- "SKSpriteNode"
-- !private "&&"
-- !private "SKShapeNode"
-- !private "NSTimeInterval"
-- "String"
-- !private "print"
-- !private "-="
-- "Bool"
-- !private "Array"
 - !private "StringLiteralType"
-- !private "CGRect"
-- !private "SKAction"
-- !private "SBStage"
-- "CGPoint"
-- "SKScene"
-- "SBPodium"
-- "Int"
-- !private "SKColor"
-- !private "-"
-- !private "=="
-- !private "SKActionTimingMode"
+- !private "CGFloat"
+- !private "Array"
+- !private "*"
+- !private "/"
+- !private "NSTimeInterval"
 - !private "+="
+- !private "+"
+- "Bool"
+- "SKSpriteNode"
+- !private "SKShapeNode"
+- "CGPoint"
+- !private "&&"
+- !private "CGRect"
+- !private "-="
+- !private "SKActionTimingMode"
+- !private "=="
+- "Int"
+- "BooleanLiteralType"
+- !private "Double"
+- "SKScene"
+- "SKCropNode"
+- !private "-"
+- !private "SKAction"
+- "String"
+- "SBPodium"
+- !private "SKColor"
+- !private "SBStage"
 depends-member:
 - !private ["PSs16AbsoluteValuable", "IntegerLiteralType"]
 - !private ["PSs16AbsoluteValuable", "Stride"]
@@ -67,7 +67,6 @@ depends-member:
 - !private ["PSs9AnyObject", "parent"]
 - !private ["PSs9AnyObject", "podiumCrop"]
 - !private ["PSs9AnyObject", "position"]
-- !private ["PSs9AnyObject", "print"]
 - !private ["PSs9AnyObject", "redColor"]
 - !private ["PSs9AnyObject", "removeFromParent"]
 - !private ["PSs9AnyObject", "runAction"]
@@ -393,6 +392,7 @@ depends-member:
 - !private ["C10SpeakerBox8SBPodium", "CGFloat"]
 - ["C10SpeakerBox8SBPodium", "CGPoint"]
 - !private ["C10SpeakerBox8SBPodium", "CGRect"]
+- !private ["C10SpeakerBox8SBPodium", "Double"]
 - ["C10SpeakerBox8SBPodium", "Int"]
 - !private ["C10SpeakerBox8SBPodium", "NSTimeInterval"]
 - !private ["C10SpeakerBox8SBPodium", "SBStage"]
@@ -414,8 +414,8 @@ depends-member:
 - ["C10SpeakerBox8SBPodium", "endPosition"]
 - ["C10SpeakerBox8SBPodium", "init"]
 - ["C10SpeakerBox8SBPodium", "podiumCrop"]
-- !private ["C10SpeakerBox8SBPodium", "print"]
 - ["C10SpeakerBox8SBPodium", "setSlidingWindowPosition"]
+- ["C10SpeakerBox8SBPodium", "slideChatBubble"]
 - ["C10SpeakerBox8SBPodium", "slidingWindow"]
 - ["C10SpeakerBox8SBPodium", "startPosition"]
 - !private ["C10SpeakerBox7SBStage", "Config"]
@@ -718,4 +718,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/SpriteKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/GLKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/simd.swiftmodule"
-interface-hash: "5c357b47af66a6651b63592ae90e7f2d"
+interface-hash: "06e67c0583bb4e1d9a338fde565de9c6"

@@ -13,6 +13,7 @@
 		E74F529A1BFE4B8D0050BA8D /* SBPodium.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F52991BFE4B8D0050BA8D /* SBPodium.swift */; };
 		E74F529C1BFE4B990050BA8D /* SBStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F529B1BFE4B990050BA8D /* SBStage.swift */; };
 		E74F529E1BFE71550050BA8D /* config.yml in Resources */ = {isa = PBXBuildFile; fileRef = E74F529D1BFE71550050BA8D /* config.yml */; };
+		E74F52A11BFF57D50050BA8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E74F52A01BFF57D50050BA8D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		E74F52991BFE4B8D0050BA8D /* SBPodium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBPodium.swift; sourceTree = "<group>"; };
 		E74F529B1BFE4B990050BA8D /* SBStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBStage.swift; sourceTree = "<group>"; };
 		E74F529D1BFE71550050BA8D /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config.yml; path = SpeakerBox/config.yml; sourceTree = "<group>"; };
+		E74F52A01BFF57D50050BA8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		E74F529F1BFE71580050BA8D /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				E74F52A01BFF57D50050BA8D /* README.md */,
 				E74F529D1BFE71550050BA8D /* config.yml */,
 			);
 			name = Config;
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74F52A11BFF57D50050BA8D /* README.md in Sources */,
 				E74F529A1BFE4B8D0050BA8D /* SBPodium.swift in Sources */,
 				E74F529C1BFE4B990050BA8D /* SBStage.swift in Sources */,
 			);

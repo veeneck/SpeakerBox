@@ -10,35 +10,35 @@ provides-member:
 provides-dynamic-lookup:
 - "animateOutOfView"
 - "addSpeaker"
-- "removeSpeaker"
 - "animateIntoView"
+- "removeSpeaker"
 - "setup"
 depends-top-level:
-- "SBPodium"
-- !private "SKAction"
-- !private "~="
-- "SKNode"
-- "=="
-- !private "SKColor"
-- !private "CGPoint"
 - "SBStage"
-- !private "+="
-- !private "*"
-- !private "fatalError"
-- !private "/"
-- !private "StringLiteralType"
-- !private "CGRect"
-- "Int"
-- !private "SKShapeNode"
-- !private "SKSpriteNode"
 - !private "SKActionTimingMode"
 - !private "-="
-- !private "BooleanLiteralType"
-- "String"
-- !private "+"
-- "NSCoder"
-- !private "-"
 - "CGFloat"
+- !private "StringLiteralType"
+- !private "fatalError"
+- !private "+"
+- !private "-"
+- "=="
+- "SBPodium"
+- !private "~="
+- !private "SKShapeNode"
+- !private "SKAction"
+- !private "CGPoint"
+- !private "CGRect"
+- "Int"
+- !private "*"
+- !private "/"
+- !private "BooleanLiteralType"
+- !private "+="
+- "NSCoder"
+- "String"
+- !private "SKColor"
+- !private "SKSpriteNode"
+- "SKNode"
 depends-member:
 - !private ["PSs16AbsoluteValuable", "IntegerLiteralType"]
 - !private ["PSs16AbsoluteValuable", "Stride"]
@@ -91,11 +91,13 @@ depends-member:
 - !private ["PSs9AnyObject", "setSlidingWindowPosition"]
 - ["PSs9AnyObject", "setup"]
 - !private ["PSs9AnyObject", "size"]
+- !private ["PSs9AnyObject", "slideChatBubble"]
 - ["PSs9AnyObject", "speakers"]
 - !private ["PSs9AnyObject", "startPosition"]
 - !private ["PSs9AnyObject", "textureFromNode"]
 - !private ["PSs9AnyObject", "timingMode"]
 - !private ["PSs9AnyObject", "view"]
+- !private ["PSs9AnyObject", "waitForDuration"]
 - !private ["PSs9AnyObject", "zPosition"]
 - ["PSs9AnyObject", ""]
 - !private ["Sa", "Generator"]
@@ -190,6 +192,7 @@ depends-member:
 - !private ["PSs11CVarArgType", "textureFromNode"]
 - !private ["PSs11CVarArgType", "timingMode"]
 - !private ["PSs11CVarArgType", "view"]
+- !private ["PSs11CVarArgType", "waitForDuration"]
 - !private ["PSs11CVarArgType", "zPosition"]
 - ["PSs11CVarArgType", ""]
 - !private ["VSs9Character", "deinit"]
@@ -287,6 +290,7 @@ depends-member:
 - !private ["PSs23CustomStringConvertible", "textureFromNode"]
 - !private ["PSs23CustomStringConvertible", "timingMode"]
 - !private ["PSs23CustomStringConvertible", "view"]
+- !private ["PSs23CustomStringConvertible", "waitForDuration"]
 - !private ["PSs23CustomStringConvertible", "zPosition"]
 - ["PSs23CustomStringConvertible", ""]
 - !private ["Sd", "IntegerLiteralType"]
@@ -352,6 +356,7 @@ depends-member:
 - !private ["PSs9Equatable", "textureFromNode"]
 - !private ["PSs9Equatable", "timingMode"]
 - !private ["PSs9Equatable", "view"]
+- !private ["PSs9Equatable", "waitForDuration"]
 - !private ["PSs9Equatable", "width"]
 - !private ["PSs9Equatable", "x"]
 - !private ["PSs9Equatable", "zPosition"]
@@ -426,6 +431,7 @@ depends-member:
 - !private ["PSs8Hashable", "textureFromNode"]
 - !private ["PSs8Hashable", "timingMode"]
 - !private ["PSs8Hashable", "view"]
+- !private ["PSs8Hashable", "waitForDuration"]
 - !private ["PSs8Hashable", "zPosition"]
 - ["PSs8Hashable", ""]
 - !private ["PSs9Indexable", "Generator"]
@@ -541,6 +547,7 @@ depends-member:
 - !private ["PSo8NSCoding", "textureFromNode"]
 - !private ["PSo8NSCoding", "timingMode"]
 - !private ["PSo8NSCoding", "view"]
+- !private ["PSo8NSCoding", "waitForDuration"]
 - !private ["PSo8NSCoding", "zPosition"]
 - ["PSo8NSCoding", ""]
 - !private ["PSo9NSCopying", "CGFloat"]
@@ -587,6 +594,7 @@ depends-member:
 - ["PSo9NSCopying", "speakers"]
 - !private ["PSo9NSCopying", "timingMode"]
 - !private ["PSo9NSCopying", "view"]
+- !private ["PSo9NSCopying", "waitForDuration"]
 - !private ["PSo9NSCopying", "zPosition"]
 - ["PSo9NSCopying", ""]
 - !private ["PSo16NSMutableCopying", "init"]
@@ -640,6 +648,7 @@ depends-member:
 - !private ["CSo8NSObject", "textureFromNode"]
 - !private ["CSo8NSObject", "timingMode"]
 - !private ["CSo8NSObject", "view"]
+- !private ["CSo8NSObject", "waitForDuration"]
 - !private ["CSo8NSObject", "zPosition"]
 - !private ["PSo16NSObjectProtocol", "CGFloat"]
 - !private ["PSo16NSObjectProtocol", "CGPoint"]
@@ -686,6 +695,7 @@ depends-member:
 - !private ["PSo16NSObjectProtocol", "textureFromNode"]
 - !private ["PSo16NSObjectProtocol", "timingMode"]
 - !private ["PSo16NSObjectProtocol", "view"]
+- !private ["PSo16NSObjectProtocol", "waitForDuration"]
 - !private ["PSo16NSObjectProtocol", "zPosition"]
 - ["PSo16NSObjectProtocol", ""]
 - !private ["PSo14NSSecureCoding", "blackColor"]
@@ -729,6 +739,7 @@ depends-member:
 - !private ["C10SpeakerBox8SBPodium", "init"]
 - !private ["C10SpeakerBox8SBPodium", "podiumCrop"]
 - !private ["C10SpeakerBox8SBPodium", "setSlidingWindowPosition"]
+- !private ["C10SpeakerBox8SBPodium", "slideChatBubble"]
 - !private ["C10SpeakerBox8SBPodium", "startPosition"]
 - ["C10SpeakerBox7SBStage", "CGFloat"]
 - !private ["C10SpeakerBox7SBStage", "CGPoint"]
@@ -763,12 +774,14 @@ depends-member:
 - ["C10SpeakerBox7SBStage", "init"]
 - !private ["C10SpeakerBox7SBStage", "position"]
 - ["C10SpeakerBox7SBStage", "removeSpeaker"]
+- !private ["C10SpeakerBox7SBStage", "runAction"]
 - !private ["C10SpeakerBox7SBStage", "scene"]
 - !private ["C10SpeakerBox7SBStage", "setPositionsForSpeakers"]
 - ["C10SpeakerBox7SBStage", "setup"]
 - !private ["C10SpeakerBox7SBStage", "speakers"]
 - !private ["CSo8SKAction", "moveToY"]
 - !private ["CSo8SKAction", "timingMode"]
+- !private ["CSo8SKAction", "waitForDuration"]
 - !private ["OSC18SKActionTimingMode", "EaseOut"]
 - !private ["CSo10SKCropNode", "position"]
 - !private ["CSo10SKCropNode", "removeFromParent"]
