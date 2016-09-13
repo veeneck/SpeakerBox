@@ -15,16 +15,16 @@ import SpriteKit
     - The podiumCrop which is a black bar (mask) representing the width of the podium.
     - The slidingWindow which is the pedestal the chatBubble sits in. By being in a crop, we can move it back and forth with the chatBubble.
 */
-public class SBPodium {
+open class SBPodium {
     
     /// The node representing the image of the speaker.
     internal var chatBubble : SKSpriteNode
     
     /// The desired end position of the chatBubble
-    public var endPosition : CGPoint?
+    open var endPosition : CGPoint?
     
     /// Desired start position of the chat bubble
-    public var startPosition : CGPoint?
+    open var startPosition : CGPoint?
     
     /// A crop node placed on top of the bottom letterbox
     internal var podiumCrop : SKCropNode?
@@ -44,7 +44,7 @@ public class SBPodium {
     /** 
     Constructs the podium base. This is the most complicated part, so let's run through an example using 2 speakers. The crop node for each speaker would be half of the screen width. Meanwhile, the slidingWindow is the width of the entire screen. But because the window sits in a crop node, the only portion visible will be half of the screen. With that in mind, you can imagine sliding the window back and forth which would move the podium (indentation) that the chatBubble sits on.
     */
-    internal func addPodiumBase(scene:SKScene, index:Int, totalPodiums:Int) {
+    internal func addPodiumBase(_ scene:SKScene, index:Int, totalPodiums:Int) {
         
         /// Create our podium and sliding window.
         let placement = self.calculatePodiumPosition(scene.size.width, index: index, totalPodiums: CGFloat(totalPodiums))
@@ -52,10 +52,10 @@ public class SBPodium {
         self.slidingWindow = SKSpriteNode(imageNamed: "bubble_base")
         
         /// Make an empty black square represent the viewable area of the crop node.
-        let shape = SKShapeNode(rect: CGRect(x: 0, y: 0, width: placement.width, height: SBStage.Config.PodiumHeight.rawValue + 4))
-        shape.fillColor = SKColor.redColor()
+        let shape = SKShapeNode(rect: CGRect(x: 0, y: 0, width: placement.width, height: SBStage.Config.podiumHeight.rawValue + 4))
+        shape.fillColor = SKColor.red
         shape.lineWidth = 0
-        let shapeTexture = scene.view!.textureFromNode(shape)
+        let shapeTexture = scene.view!.texture(from: shape)
         let mask = SKSpriteNode(texture: shapeTexture)
         
         /// Add the sliding window to the podium, which will be masked by the empty black square in the last step.
@@ -68,7 +68,7 @@ public class SBPodium {
     // MARK: Positioning
     
     /// Honestly, I have no idea how this function works. Essentially, it is trying to figure out the ideal width of the crop node, and the position it should start at. Would have to log with test data to figure out why it works.
-    private func calculatePodiumPosition(sceneWidth:CGFloat, index:Int, totalPodiums:CGFloat) -> (startPos:CGPoint, width:CGFloat) {
+    fileprivate func calculatePodiumPosition(_ sceneWidth:CGFloat, index:Int, totalPodiums:CGFloat) -> (startPos:CGPoint, width:CGFloat) {
         var cropwidth = sceneWidth / totalPodiums
         var cropposX = (sceneWidth / CGFloat(totalPodiums + 1)) * CGFloat(index + 1)
         if index == 1 && totalPodiums == 3 {
@@ -85,12 +85,12 @@ public class SBPodium {
         if(totalPodiums == 2) {
             cropposX = (cropwidth * CGFloat(index)) + (cropwidth / 2)
         }
-        return (CGPoint(x:cropposX, y: -1 * SBStage.Config.PodiumHeight.rawValue), cropwidth)
+        return (CGPoint(x:cropposX, y: -1 * SBStage.Config.podiumHeight.rawValue), cropwidth)
     }
     
     /// Since the sliding window sits inside of the podiumCrop, this is just a convenience function to change its position.
-    internal func setSlidingWindowPosition(point:CGPoint) {
-        var innerPos = self.chatBubble.parent!.convertPoint(self.startPosition!, toNode: self.podiumCrop!)
+    internal func setSlidingWindowPosition(_ point:CGPoint) {
+        var innerPos = self.chatBubble.parent!.convert(self.startPosition!, to: self.podiumCrop!)
         innerPos.y = 0
         self.slidingWindow?.position = innerPos
     }
@@ -98,19 +98,19 @@ public class SBPodium {
     // MARK: Animations
     
     /// Bring chat bubles in, wait until they are all in, then slide out together.
-    internal func animateChatBubbleIn(index:Int) {
+    internal func animateChatBubbleIn(_ index:Int) {
         
-        let move1 = SKAction.scaleTo(1, duration: 1)
-        move1.timingMode = SKActionTimingMode.EaseOut
+        let move1 = SKAction.scale(to: 1, duration: 1)
+        move1.timingMode = SKActionTimingMode.easeOut
         
-        let move2 = SKAction.moveTo(self.endPosition!, duration: 0.5)
-        move2.timingMode = SKActionTimingMode.EaseOut
+        let move2 = SKAction.move(to: self.endPosition!, duration: 0.5)
+        move2.timingMode = SKActionTimingMode.easeOut
         
-        let delay1 = SKAction.waitForDuration(NSTimeInterval(1 + (0.3 * CGFloat(index))))
+        let delay1 = SKAction.wait(forDuration: TimeInterval(1 + (0.3 * CGFloat(index))))
         
-        let delay2 = SKAction.waitForDuration(NSTimeInterval(0.6 - (0.3 * CGFloat(index))))
+        let delay2 = SKAction.wait(forDuration: TimeInterval(0.6 - (0.3 * CGFloat(index))))
         
-        self.chatBubble.runAction(SKAction.sequence([
+        self.chatBubble.run(SKAction.sequence([
             delay1,
             move1,
             delay2,
@@ -122,43 +122,43 @@ public class SBPodium {
     
     /// Slide chat buble if it has already been brought onto stage.
     internal func slideChatBubble() {
-        let move = SKAction.moveTo(self.endPosition!, duration: 0.5)
-        move.timingMode = SKActionTimingMode.EaseOut
-        self.chatBubble.runAction(move)
+        let move = SKAction.move(to: self.endPosition!, duration: 0.5)
+        move.timingMode = SKActionTimingMode.easeOut
+        self.chatBubble.run(move)
         
         /// Move sliding window with it, this time with no delay since it isn't the first time thestage is loaded.
-        self.animateSlidingWindow(SKAction.waitForDuration(0), delay2: SKAction.waitForDuration(0), cropDuration: 0)
+        self.animateSlidingWindow(SKAction.wait(forDuration: 0), delay2: SKAction.wait(forDuration: 0), cropDuration: 0)
     }
     
     /// Once chat bubbles have finished first half of animation, slide the window to mirror the chat bubble identically.
-    private func animateSlidingWindow(delay1:SKAction, delay2:SKAction, cropDuration:Double = 1) {
-        var pos = self.chatBubble.parent!.convertPoint(self.endPosition!, toNode: self.podiumCrop!)
+    fileprivate func animateSlidingWindow(_ delay1:SKAction, delay2:SKAction, cropDuration:Double = 1) {
+        var pos = self.chatBubble.parent!.convert(self.endPosition!, to: self.podiumCrop!)
         pos.y = 0
-        let move = SKAction.moveTo(pos, duration: 0.5)
-        let cropdelay = SKAction.waitForDuration(cropDuration)
-        move.timingMode = SKActionTimingMode.EaseOut
-        self.slidingWindow?.runAction(SKAction.sequence([delay1, cropdelay, delay2, move]))
+        let move = SKAction.move(to: pos, duration: 0.5)
+        let cropdelay = SKAction.wait(forDuration: cropDuration)
+        move.timingMode = SKActionTimingMode.easeOut
+        self.slidingWindow?.run(SKAction.sequence([delay1, cropdelay, delay2, move]))
     }
     
     /// Shrink the buble until it disappears.
     /// withMove is used because the letterbox remains if removeSpeaker is called, but not if the scene ends.
-    internal func animateChatBubbleOut(withMove:Bool = true, callback:()->()) {
-        let move = SKAction.moveToY(0, duration: 1)
-        move.timingMode = SKActionTimingMode.EaseOut
-        let scale = SKAction.scaleTo(0, duration: 1)
-        scale.timingMode = SKActionTimingMode.EaseOut
+    internal func animateChatBubbleOut(_ withMove:Bool = true, callback:@escaping ()->()) {
+        let move = SKAction.moveTo(y: 0, duration: 1)
+        move.timingMode = SKActionTimingMode.easeOut
+        let scale = SKAction.scale(to: 0, duration: 1)
+        scale.timingMode = SKActionTimingMode.easeOut
         
         if(withMove) {
-            self.chatBubble.runAction(SKAction.group([move,scale])) {
+            self.chatBubble.run(SKAction.group([move,scale]), completion: {
                 self.chatBubble.removeFromParent()
                 callback()
-            }
+            }) 
         }
         else {
-            self.chatBubble.runAction(scale) {
+            self.chatBubble.run(scale, completion: {
                 self.chatBubble.removeFromParent()
                 callback()
-            }
+            }) 
         }
     }
     
