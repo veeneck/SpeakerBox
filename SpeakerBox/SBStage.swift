@@ -109,6 +109,21 @@ open class SBStage : SKNode {
         self.addChild(speaker.chatBubble)
     }
     
+    open func addSpeakerToConversation(_ name:String, index:Int = 1) {
+        let speaker = SBPodium(bubbleImage: "\(name)Bubble")
+        self.speakers.insert(speaker, at: index)
+        self.addChild(speaker.chatBubble)
+        self.adjustPositionsForSpeakers()
+        for (existingSpeaker, podium) in self.speakers.enumerated() {
+            if(podium.imageName != speaker.imageName) {
+                podium.slideChatBubble()
+            }
+        }
+        /// Set the node to the start position
+        speaker.chatBubble.position = CGPoint(x: speaker.startPosition!.x, y: Config.speakerHeight.rawValue)
+        speaker.animateChatBubbleIn(0, delay:0)
+    }
+    
     /**
     Remove a speaker from the scene.
      
@@ -159,7 +174,11 @@ open class SBStage : SKNode {
             
             /// Set start to current position and find the end position
             let coords = self.calculateSpeakerStartAndEndPositions(index)
-            speaker.startPosition = speaker.chatBubble.position
+            var startPosition = coords.startPos
+            if speaker.onStage == true {
+                startPosition = speaker.chatBubble.position
+            }
+            speaker.startPosition = startPosition
             speaker.endPosition = coords.endPos
             
             /// Remove old podium and create new one based on new dimensions and move it instantly to Y coord.

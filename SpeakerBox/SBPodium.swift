@@ -17,6 +17,9 @@ import SpriteKit
 */
 open class SBPodium {
     
+    /// Name as an identifier
+    internal var imageName : String
+    
     /// The node representing the image of the speaker.
     internal var chatBubble : SKSpriteNode
     
@@ -32,10 +35,14 @@ open class SBPodium {
     /// The viewable portion o the podiumCrop which contains the base that chatBubble sits in.
     internal var slidingWindow : SKSpriteNode?
     
+    /// Flag to track if the speaker's podium is in view
+    internal var onStage : Bool = false
+    
     // Mark: Initializing a SBPodium
     
     /// Base construction with a chat bubble.
     internal init(bubbleImage:String) {
+        self.imageName = bubbleImage
         self.chatBubble = SKSpriteNode(imageNamed: bubbleImage)
         self.chatBubble.setScale(0)
         self.chatBubble.zPosition = 10050
@@ -118,6 +125,24 @@ open class SBPodium {
         ]))
 
         self.animateSlidingWindow(delay1, delay2: delay2)
+        
+        self.onStage = true
+    }
+    
+    /// animate chat bubble but not the entire stage. used for adding speaker to existing conversation
+    internal func animateChatBubbleIn(_ index:Int, delay:CGFloat = 0) {
+        let move1 = SKAction.scale(to: 1, duration: 1)
+        move1.timingMode = SKActionTimingMode.easeOut
+        
+        let move2 = SKAction.move(to: self.endPosition!, duration: 0.5)
+        move2.timingMode = SKActionTimingMode.easeOut
+        
+        self.chatBubble.run(SKAction.sequence([
+            move1,
+            move2
+        ]))
+        
+        self.onStage = true
     }
     
     /// Slide chat buble if it has already been brought onto stage.
@@ -156,6 +181,7 @@ open class SBPodium {
         }
         else {
             self.chatBubble.run(scale, completion: {
+                self.onStage = false
                 self.chatBubble.removeFromParent()
                 callback()
             }) 
