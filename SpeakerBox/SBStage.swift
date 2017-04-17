@@ -114,7 +114,7 @@ open class SBStage : SKNode {
         self.speakers.insert(speaker, at: index)
         self.addChild(speaker.chatBubble)
         self.adjustPositionsForSpeakers()
-        for (existingSpeaker, podium) in self.speakers.enumerated() {
+        for (_, podium) in self.speakers.enumerated() {
             if(podium.imageName != speaker.imageName) {
                 podium.slideChatBubble()
             }
